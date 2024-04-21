@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: Dadaa
+  name: Dadaa
+  labels:
+    app: Dadaa
+spec:
+  selector:
+    matchLabels:
+      app: Dadaa
+  template:
+    metadata:
+      labels:
+        app: Dadaa
+        name: Dadaa
+    spec:
+      containers:
+        - name: Dadaa
+          image: mahendraintelops/dada/Dadaa
+          imagePullPolicy: Always
+          ports:
+        
+          - containerPort: 4335
+            name: http
+        
+        
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+        
